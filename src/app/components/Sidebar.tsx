@@ -13,11 +13,11 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 p-4 bg-card dark:bg-card-dark h-screen hidden md:block">
+    <aside className="w-64 p-4 bg-card dark:bg-card-dark h-screen hidden md:block bg-blue-700 text-white p-4">
       <nav className="flex flex-col gap-4">
         {navItems.map(item => (
           <Link key={item.name} href={item.href}>
-            <span className={`block p-2 rounded-lg ${pathname === item.href ? 'bg-primary text-white' : 'hover:bg-secondary hover:text-white'}`}>
+            <span className={`hover: bg-blue-800 block p-2 rounded-lg ${pathname === item.href ? 'bg-primary text-white' : 'hover:bg-secondary hover:text-white hover'}`}>
               {item.name}
             </span>
           </Link>

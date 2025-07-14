@@ -18,7 +18,7 @@ export default function UploadArea() {
   };
 
   return (
-    <div className="border-2 border-dashed rounded-xl p-8 flex flex-col items-center">
+    <div className="border-2 border-dashed rounded-xl p-8 flex flex-col items-center hover:bg-blue-100 hover:shadow-lg transition-all duration-300 ease-in-out">
       <input type="file" onChange={handleUpload} className="mb-4" />
       {loading && <Spinner />}
     </div>
