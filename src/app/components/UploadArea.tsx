@@ -4,16 +4,27 @@ import { useState } from "react";
 import { uploadFabric } from "@/utils/api";
 import Spinner from "./Spinner";
 
-export default function UploadArea() {
+interface UploadAreaProps {
+  onResult: (result: any) => void;
+}
+
+export default function UploadArea({ onResult }: UploadAreaProps) {
   const [loading, setLoading] = useState(false);
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setLoading(true);
-      const result = await uploadFabric(file);
-      console.log(result);
-      setLoading(false);
+      try {
+        const result = await uploadFabric(file);
+        console.log(result);
+        onResult(result);  // Pasamos el resultado al padre
+      } catch (error) {
+        console.error("Error uploading fabric:", error);
+        alert("Failed to upload fabric.");
+      } finally {
+        setLoading(false);
+      }
     }
   };
 

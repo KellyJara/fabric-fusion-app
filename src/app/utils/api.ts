@@ -1,15 +1,15 @@
 export const uploadFabric = async (file: File) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          name: file.name,
-          url: URL.createObjectURL(file),
-          properties: {
-            color: "Blue",
-            texture: "Soft Cotton",
-            pattern: "Plain",
-          }
-        });
-      }, 1500);
-    });
+  const formData = new FormData();
+  formData.append("images", file);
+
+  const response = await fetch("/api/analyze_fabrics", {  // Nota la URL relativa con /api
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error("Error uploading fabric");
   }
+
+  return response.json();
+};
